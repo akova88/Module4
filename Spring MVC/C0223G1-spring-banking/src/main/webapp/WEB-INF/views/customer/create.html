@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/assets/bootstrap/v5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="stylesheet" href="/assets/CSS/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="rounded">
+        <div class="col-lg-6">
+            <h1>Create Customers</h1>
+        </div>
+        <div class=" header-right-button col-lg-6">
+            <a href="/customers">
+                <button class="btn btn-outline-light">
+                    <i class="fas fa-bars"></i>
+                    Customer list
+                </button>
+            </a>
+
+        </div>
+    </header>
+    <div class="content">
+        <form method="post">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="fw-bold" for="fullName">Full name</label>
+                    <input type="text" class="form-control" name="fullName" id="fullName">
+                </div>
+                <div class="col-lg-6">
+                    <label class="fw-bold" for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="fw-bold" for="phone">Phone</label>
+                    <input type="tel" class="form-control" name="phone" id="phone">
+                </div>
+                <div class="col-lg-6">
+                    <label class="fw-bold" for="address">Address</label>
+                    <input type="address" class="form-control" name="address" id="address">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-5">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i>
+                        Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:replace="/layout/footer-alert"/>
+</div>
+</body>
+</html>

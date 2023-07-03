@@ -1,0 +1,6 @@
+<div th:if="${success}" class="alert alert-success position-fixed bottom-0 container">
+    <p th:text="${messageS}"></p>
+</div>
+<ul th:if="${error}" class="alert alert-danger position-fixed bottom-0 container" >
+    <li th:text="${message}" class="ms-2"></li>
+</ul>

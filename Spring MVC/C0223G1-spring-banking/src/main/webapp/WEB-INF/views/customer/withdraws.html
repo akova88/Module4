@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Withdraws</title>
+    <link rel="stylesheet" href="/assets/bootstrap/v5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="stylesheet" href="/assets/CSS/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="rounded">
+        <div class="col-lg-6">
+            <h1>Customers Withdraws</h1>
+        </div>
+        <div class=" header-right-button col-lg-6">
+            <a href="/customers">
+                <button class="btn btn-outline-light">
+                    <i class="fas fa-bars"></i>
+                    Customer list
+                </button>
+            </a>
+
+        </div>
+    </header>
+
+    <div class="content">
+        <form method="post" th:if="${withdraws != null}" th:object="${withdraws}">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="fw-bold">Customer ID</label>
+                    <input type="text" class="form-control" th:field="*{customer.id}" readonly>
+                </div>
+                <div class="col-lg-6">
+                    <label class="fw-bold">Full name</label>
+                    <input type="text" class="form-control" th:field="*{customer.fullName}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="fw-bold">Current balance ($)</label>
+                    <input type="text" class="form-control" th:field="*{customer.balance}" readonly>
+                </div>
+                <div class="col-lg-6">
+                    <label class="fw-bold">Transaction Amount ($)</label>
+                    <input type="text" class="form-control" name="transactionAmount">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-5">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fas fa-minus"></i>
+                        Withdraws
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <th:block th:replace="/layout/footer-alert"/>
+</div>
+</body>
+</html>
