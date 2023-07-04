@@ -51,34 +51,48 @@
                             <td th:text="${item.phone}" class="text-center"></td>
                             <td th:text="${item.address}"></td>
                             <td th:text="${item.balance}" class="text-end"></td>
-                            <td>
-                                <a href="#">
+                            <td class="btn">
+                                <a th:href="@{/customers/edit/__${item.id}__}">
                                     <button class="btn btn-outline-secondary">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
+                            <td class="btn">
                                 <a th:href="@{/customers/deposit/__${item.id}__}">
                                     <button class="btn btn-outline-success">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
+                            <td class="btn">
                                 <a th:href="@{/customers/withdraws/__${item.id}__}">
                                     <button class="btn btn-outline-warning">
                                         <i class="fas fa-minus"></i>
                                     </button>
                                 </a>
                             </td>
-                            <td>
+                            <td class="btn">
                                 <a th:href="@{/customers/transfer/__${item.id}__}">
                                     <button class="btn btn-outline-primary">
                                         <i class="fas fa-exchange-alt"></i>
                                     </button>
                                 </a>
                             </td>
+                            <td class="btn">
+                                <a th:href="@{/customers/delete/__${item.id}__}">
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <form class="d-inline" id="delete"
+                                  th:action="@{/customers/delete/__${item.id}__}"
+                                  method="post">
+                                <button class="btn btn-outline-danger fas fa-ban"
+                                        onclick="return confirm('Chắc chắn muốn xóa KH này?')">
+                                </button>
+                            </form>
                         </tr>
                     </th:block>
                 </tbody>
