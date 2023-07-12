@@ -1,0 +1,46 @@
+<th:block th:fragment="modalDeposit">
+  <!-- Modal Deposit-->
+  <div class="modal fade" id="modalDeposit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Modal Deposit</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="error-area hide"></div>
+          <form method="post" id="frmDeposit">
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="fw-bold">Customer ID</label>
+                <input type="text" class="form-control" id="idDeps" name="idDeps" readonly>
+              </div>
+              <div class="col-lg-6">
+                <label class="fw-bold">Full name</label>
+                <input type="text" class="form-control" id="fullNameDeps" name="fullNameDeps" readonly>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="fw-bold">Current balance ($)</label>
+                <input type="text" class="form-control" id="balanceDeps" name="balanceDeps" readonly>
+              </div>
+              <div class="col-lg-6">
+                <label class="fw-bold">Transaction Amount ($)</label>
+                <input type="text" class="form-control" id="transactionAmount" name="transactionAmount">
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btnSaveDeposit">
+            <i class="fas fa-plus"></i>
+            Deposit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
