@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of customers</title>
+    <link rel="stylesheet" href="/assets/bootstrap/v5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome/v5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/assets/sweetalert2/v11.7.12/sweetalert2.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/bootstrap/v5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="rounded">
+            <div class="col-lg-6">
+                <h1>List of Customers</h1>
+            </div>
+            <div class=" header-right-button col-lg-6">
+
+
+                <button class="btn btn-outline-light" id="btnCreateShowModal">
+                    <i class="fas fa-user-plus"></i> Add new Video
+                </button>
+
+            </div>
+        </header>
+        <div class="content container">
+            <table class="table table-hover" id="tbCustomer">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-center">#</th>
+                    <th>Title</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Playlist</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="container-fluid">
+
+    </footer>
+
+    <th:block th:replace="modalCreate"/>
+<!--    <th:block th:replace="customer/modalDeposit"/>-->
+<!--    <th:block th:replace="customer/modalUpdate"/>-->
+<!--    <th:block th:replace="customer/modalWithdraw"/>-->
+<!--    <th:block th:replace="customer/modalTransfer"/>-->
+
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/jquery.validate.min.js"></script>
+    <script src="/assets/sweetalert2/v11.7.12/sweetalert2.all.min.js"></script>
+
+<script>
+    const page = {
+        url: {
+            getAllVideos: App.API_VIDEO,
+            getVideoById: App.API_VIDEO,
+            createVideo: App.API_VIDEO,
+            updateVideo: App.API_VIDEO,
+
+        },
+        elements: {
+
+        },
+        loadData: {
+
+        },
+        commands: {},
+        dialogs: {
+            elements: {},
+            commands: {}
+        },
+        initializeControlEvent: {}
+    }
+
+    page.elements.btnShowCreateModal = $('#btnCreateShowModal');
+    page.elements.tbCustomerBody = $('#tbCustomer tbody');
+
+    page.dialogs.elements.modalCreate = $('#modalCreate');
+    page.dialogs.elements.errorAreaCreate = $('#modalCreate .error-area')
+    page.dialogs.elements.frmCreate = $('#frmCreate');
+    page.dialogs.elements.fullNameCre = $('#fullNameCre');
+    page.dialogs.elements.emailCre = $('#emailCre');
+    page.dialogs.elements.phoneCre = $('#phoneCre');
+    page.dialogs.elements.provinceCre = $('#provinceCre');
+    page.dialogs.elements.districtCre = $('#districtCre');
+    page.dialogs.elements.wardCre = $('#wardCre');
+    page.dialogs.elements.addressCre = $('#addressCre');
+    page.dialogs.elements.btnCreate = $('#btnCreate');
+
+    page.elements.footer = $('footer');
+
+    let videoId = 0;
+    // let video;
+
+    page.commands.renderVideos = (video) => {
+        const playlists = video.playlists;
+        let listStr = '';
+        playlists.forEach(item => {
+            const singleStr = item.name+ ', ';
+            listStr += singleStr;
+
+        });
+        return `
+        <tr id="tr_${video.id}">
+            <th></th>
+            <th class="text-center">#</th>
+            <th>${video.title}</th>
+            <th class="text-center">${video.description}</th>
+            <th class="text-center">${listStr}</th>
+        </tr>
+    `;
+    }
+
+    page.commands.renderFooter = (videoId) => {
+        return `
+                <div class="container">
+                    <button class="btn btn-secondary edit" data-id="${videoId}">
+                        <i class="fas fa-pencil-alt"></i> Update
+                    </button>
+
+                    <button class="btn btn-danger delete" data-id="${videoId}">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            `
+    }
+
+    page.commands.getAllVideos = () => {
+
+        page.elements.tbCustomerBody.empty();
+
+        $.ajax({
+            type: 'GET',
+            url: page.url.getAllVideos
+        })
+            .done((data) => {
+                data.forEach(video => {
+                    const str = page.commands.renderVideos(video);
+                    page.elements.tbCustomerBody.prepend(str);
+
+                });
+            })
+            .fail((error) => {
+                console.log(error);
+            })
+    }
+
+
+    page.initializeControlEvent = () => {
+        page.elements.tbCustomerBody.on('click', 'tr', function () {
+            page.elements.tbCustomerBody.find('span').removeClass('selected').addClass('unselected');
+            $(this).find('span').removeClass('unselected').addClass('selected');
+
+            const customerId = $(this).attr('id').replace('tr_', '');
+
+            const str = page.commands.renderFooter(customerId);
+            page.elements.footer.empty().append(str);
+        })
+
+        page.elements.btnShowCreateModal.on('click', () => {
+            page.dialogs.elements.frmCreate[0].reset();
+            page.dialogs.elements.frmCreate.validate().resetForm();
+            page.dialogs.elements.frmCreate.find("input.error").removeClass("error");
+            page.dialogs.elements.errorAreaCreate.removeClass("show").addClass("hide").empty();
+            page.dialogs.elements.modalCreate.modal('show');
+        })
+    }
+
+    page.loadData = () => {
+        page.commands.getAllVideos();
+    }
+    $(() => {
+        page.loadData();
+        page.initializeControlEvent();
+    })
+</script>
+
+
+
+<!--    <script src="/assets/js/customer-validation.js"></script>-->
+</body>
+</html>

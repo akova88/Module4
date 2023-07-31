@@ -104,4 +104,13 @@ public class CustomerServiceImp implements ICustomerService{
         return transfer;
     }
 
+    @Override
+    public Boolean existsByEmail(String email) {
+        return customerRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Boolean existsByEmailAndIdNot(String email, Long id) {
+        return customerRepository.existsByEmailAndIdNot(email, id);
+    }
 }

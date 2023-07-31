@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="email-validate-maven:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c0a34c7-949d-497a-8ba4-47dbf75ac88e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/emailvalidatemaven/HelloServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/configs/spring-config-mvc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/success.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testSpringMaven/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/config/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/config/AppConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/config/AppInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/config/AppInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../C0223-spring-customer-management/src/main/java/com/cg/controller/CustomerController.java" afterDir="false" />
@@ -32,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-manegement/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-manegement/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../C0223-spring-customer-manegement/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +49,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="2RrRgKVdWKkm0S5VORv7SU38T8R" />
   <component name="ProjectLevelVcsManager">
@@ -69,6 +76,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -170,7 +178,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1688006325579</updated>
-      <workItem from="1688006326587" duration="464000" />
+      <workItem from="1688006326587" duration="2083000" />
     </task>
     <servers />
   </component>

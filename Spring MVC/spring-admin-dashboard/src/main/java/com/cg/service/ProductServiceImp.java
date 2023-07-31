@@ -1,12 +1,44 @@
 package com.cg.service;
 
 import com.cg.model.Product;
+import com.cg.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ProductServiceImp implements IProductService{
-    public static List<Product> products;
+    @Autowired
+    private ProductRepository productRepository;
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public void delete(Product product) {
+        productRepository.delete(product);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
+    }
+    /**
+    public static List<Product> products = new ArrayList<Product>();
     public static Long maxID = 1L;
 
     static {
@@ -60,5 +92,7 @@ public class ProductServiceImp implements IProductService{
             products.set(index, product);
         }
     }
+**/
+
 
 }

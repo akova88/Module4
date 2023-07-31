@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layout/head :: head-2"/>
 </head>
 <body>
-$END$
+    <th:block th:replace="layout/header"/>
+
+    <div class="content">
+        <h1>List of Customer</h1>
+    </div>
+
+    <th:block th:replace="layout/footer"/>
 </body>
 </html>

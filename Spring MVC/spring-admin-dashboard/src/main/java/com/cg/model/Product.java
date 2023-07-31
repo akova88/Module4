@@ -1,11 +1,20 @@
 package com.cg.model;
 
-import java.util.Date;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+import java.util.Date;
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="nam_product", nullable = false)
     private String name;
+    @Column(nullable = false)
     private float price;
+    @Column(nullable = false)
     private int quantity;
     private String imgLink;
 

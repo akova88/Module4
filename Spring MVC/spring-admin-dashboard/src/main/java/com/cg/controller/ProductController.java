@@ -3,17 +3,22 @@ package com.cg.controller;
 import com.cg.model.Product;
 import com.cg.service.IProductService;
 import com.cg.service.ProductServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-    IProductService productService = new ProductServiceImp();
+    @Autowired
+            private IProductService productService;
+
     @GetMapping
     public ModelAndView showListProduct() {
         ModelAndView modelAndView = new ModelAndView();
@@ -24,7 +29,12 @@ public class ProductController {
     }
     @GetMapping("/info/{id}")
     public String showInfoProduct(@PathVariable Long id, Model model) {
-        Product product = productService.getById(id);
+
+        Optional<Product> productOptional = productService.findById(id);
+        if (productOptional.isEmpty()) {
+            return "redirect:/errors/404";
+        }
+        Product product = productOptional.get();
         model.addAttribute("product", product);
         return "product/info";
     }
@@ -33,7 +43,11 @@ public class ProductController {
     public String showEditPage(@PathVariable String id, Model model) {
         try {
             Long productId = Long.parseLong(id);
-            Product product = productService.getById(productId);
+            Optional<Product> productOptional = productService.findById(productId);
+            if (productOptional.isEmpty()) {
+                return "redirect:/errors/404";
+            }
+            Product product = productOptional.get();
             model.addAttribute("product", product);
             return "product/edit";
 
@@ -43,11 +57,13 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable String id) {
+    public String delete(@PathVariable String id, RedirectAttributes redirectAttributes) {
         try {
             Long productId = Long.parseLong(id);
-            productService.delete(productId);
+            productService.deleteById(productId);
 
+            redirectAttributes.addFlashAttribute("success", true);
+            redirectAttributes.addFlashAttribute("message", "Xóa thành công");
             return "redirect:/products";
 
         } catch (Exception e) {
@@ -63,14 +79,14 @@ public class ProductController {
     }
     @PostMapping("/create")
     public String doCreate(@ModelAttribute Product product, Model model ) {
-        productService.add(product);
+        productService.save(product);
         model.addAttribute("product", product);
         return "/product/create";
     }
     @PostMapping("/{id}")
     public String doUpdate(@PathVariable Long id, @ModelAttribute Product product, Model model ) {
         product.setId(id);
-        productService.update(product);
+        productService.save(product);
         List<Product> products = productService.findAll();
         model.addAttribute("products", products);
         return "/product/list";

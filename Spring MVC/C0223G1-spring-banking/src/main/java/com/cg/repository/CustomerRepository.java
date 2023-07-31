@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+    Boolean existsByEmail(String email);
+    Boolean existsByEmailAndIdNot(String email,Long id);
+
     @Modifying
     @Query("UPDATE Customer AS c SET c.balance = :newBalance WHERE c.id = :id")
     void setBalance(@Param("id") Long id, @Param("newBalance") BigDecimal newBalance);

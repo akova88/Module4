@@ -1,10 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>List Customers</title>
+    <th:block th:replace="layout/head"/>
 </head>
 <body>
+<div id="wrapper">
 
+
+    <!-- Topbar Start -->
+    <th:block th:replace="layout/header"/>
+
+    <!-- end Topbar --> <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="layout/left"/>
+
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+
+
+                <!-- end page title -->
+
+                <div class="row d-flex bg-soft-primary border-radius-fix">
+                    <div class="col-6">
+                        <h1 class="text-left">List of Customer</h1>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end ">
+                        <a href="/customers/create" class="btn btn-success m-3"><i class="fa-solid fa-plus"></i> Transfer money info</a>
+                        <a href="/customers/create" class="btn btn-success m-3"><i class="fa-solid fa-plus"></i> Add New Customer</a>
+                    </div>
+                </div>
+
+
+                <div>
+                    <form action="/customers/search" method="get">
+                        <lable>Tìm kiếm</lable>
+                        <input type="text" name="keySearch">
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+                <!-- end row -->
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-hover">
+                            <thead class="bg-primary">
+                                <tr>
+                                    <td>#</td>
+                                    <td>FullName</td>
+                                    <td>Email</td>
+                                    <td>Phone</td>
+                                    <td>Address</td>
+                                    <td>Balance</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th:block th:each="items : ${customers}" >
+                                    <tr>
+                                        <td th:text="${items.id}"></td>
+                                        <td th:text="${items.fullName}"></td>
+                                        <td th:text="${items.email}"></td>
+                                        <td th:text="${items.phone}"></td>
+                                        <td th:text="${items.address}"></td>
+                                        <td th:text="${items.balance}"></td>
+                                        <td>
+                                            <div class="d-flex justify-content-around">
+                                                <a th:href="@{/customers/info/__${items.id}__}" class="btn btn-primary btn-sm"><i
+                                                        class="bi bi-eye-fill"></i></a>
+                                                <a th:href="@{/customers/__${items.id}__}" class="btn btn-primary btn-sm"><i
+                                                        class="fa-solid fa-pen"></i></a>
+                                                <a th:href="@{/customers/delete/__${items.id}__}" class="btn btn-lighten-danger btn-sm"><i
+                                                        class="fa-solid fa-trash-can"></i></a>
+                                                <a th:href="@{/customers/deposits/__${items.id}__}" class="btn btn-lighten-primary btn-sm"><i
+                                                        class="fa-solid fa-plus-square"></i></a>
+                                                <a th:href="@{/customers/withdraws/__${items.id}__}" class="btn btn-lighten-warning btn-sm"><i
+                                                        class="fa-solid fa-minus-square"></i></a>
+                                                <a th:href="@{/customers/transfers/__${items.id}__}" class="btn btn-lighten-secondary btn-sm"><i
+                                                        class="ion-ios-switch"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+                <div th:if="${success}">
+                    <h2 class="alert-success" th:text="${message}"></h2>
+                </div>
+
+                <!-- end row-->
+
+
+                <!-- end row-->
+
+            </div>
+            <!-- end container-fluid -->
+
+        </div>
+        <!-- end content -->
+
+
+        <!-- Footer Start -->
+        <th:block th:replace="layout/footer"/>
+        <!-- end Footer -->
+
+    </div>
+</div>
+<th:block th:replace="layout/footer_js"/>
 </body>
 </html>

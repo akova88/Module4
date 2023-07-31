@@ -13,4 +13,7 @@ public interface ICustomerService extends IGeneralService<Customer, Long> {
 
     Customer withdraw(Withdraws withdraws);
     Transfer transfer(Transfer transfer);
+
+    Boolean existsByEmail(String email);
+    Boolean existsByEmailAndIdNot(String email,Long id);
 }

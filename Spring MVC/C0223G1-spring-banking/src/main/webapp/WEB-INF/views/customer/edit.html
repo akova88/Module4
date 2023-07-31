@@ -29,16 +29,19 @@
         <div class="col-lg-6">
           <label class="fw-bold" for="fullName">Full name</label>
           <input type="text" class="form-control" id="fullName" th:field="*{fullName}">
+          <span class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
         </div>
         <div class="col-lg-6">
           <label class="fw-bold" for="email">Email</label>
           <input type="email" class="form-control" id="email" th:field="*{email}">
+          <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-6">
           <label class="fw-bold" for="phone">Phone</label>
           <input type="tel" class="form-control" id="phone" th:field="*{phone}">
+          <span class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
         </div>
         <div class="col-lg-6">
           <label class="fw-bold" for="address">Address</label>

@@ -36,7 +36,9 @@
                     <a href="/products/create" class="btn btn-success m-3"><i class="fa-solid fa-plus"></i> New Product</a>
                 </div>
                 <!-- end row -->
-
+                <div th:if="${success}">
+                    <h2 class="alert-success" th:text="${message}"></h2>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
