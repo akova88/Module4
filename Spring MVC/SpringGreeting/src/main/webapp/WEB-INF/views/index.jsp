@@ -5,10 +5,10 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1>Hello Spring MVC
-    Hello${name}
-    Number: ${number}
-    Number: ${numberA}
+<h1>
+    Hello ${name}
+<%--    Number: ${number}--%>
+<%--    Number: ${numberA}--%>
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
