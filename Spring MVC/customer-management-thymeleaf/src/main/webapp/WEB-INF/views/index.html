@@ -16,6 +16,12 @@
             <span th:text="${success}"></span>
         </div>
     </div>
+    <div>
+        <form action="/customers/search" method="post">
+            <input type="text" name="kw">
+            <input type="submit" value="Tìm kiếm">
+        </form>
+    </div>
 
     <table id="customers">
         <thead>
