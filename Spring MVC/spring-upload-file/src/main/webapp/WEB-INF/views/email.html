@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Configuration</title>
+</head>
+<body>
+    <h1>Email Configuration</h1>
+
+    <p>Current Configuration:</p>
+    <p>Page Size: <span th:text="${emailConfig.pageSize}"></span></p>
+    <p>Language: <span th:text="${emailConfig.language}"></span></p>
+    <p>Spam Filter: <span th:text="${emailConfig.spam} ? 'Enabled' : 'Disabled'"></span></p>
+    <p>Signature: <span th:text="${emailConfig.signature}"></span></p>
+
+    <form method="post" th:object="${emailConfig}">
+          <div>
+              <label for="language">Select Language:</label>
+              <select id="language" th:field="*{language}">
+                  <option value="en">English</option>
+                  <option value="vn">VietNam</option>
+              </select>
+          </div>
+
+          <div>
+              <label for="pageSize">Select Page Size:</label>
+              <select id="pageSize" th:field="*{pageSize}">
+                  <option th:each="size : ${sizes}" th:value="${size}" th:text="${size}"></option>
+              </select>
+          </div>
+        <div>
+            <input type="checkbox" id="spam" th:field="*{spam}"/>
+            <label for="spam">Spam Filter</label>
+        </div>
+
+        <div>
+            <label for="signature">Signature:</label>
+            <textarea id="signature" th:field="*{signature}"></textarea>
+        </div>
+
+        <button type="submit">Save Configuration</button>
+    </form>
+</body>
+</html>
